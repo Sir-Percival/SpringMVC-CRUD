@@ -5,10 +5,7 @@ import org.example.springmvccrud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +32,14 @@ public class EmployeeController
     public String showFormForAdd(Model model)
     {
         Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "employees/employee-form";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("employeeId") int id, Model model)
+    {
+        Employee employee = employeeService.findById(id);
         model.addAttribute("employee", employee);
         return "employees/employee-form";
     }
