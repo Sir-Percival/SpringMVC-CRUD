@@ -2,9 +2,10 @@ package org.example.springmvccrud.repository;
 
 import org.example.springmvccrud.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.List;
+
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>
 {
+    public List<Employee> findAllByOrderByLastNameAsc();
 }
